@@ -1,16 +1,15 @@
 const app = require('./app');
+const { default: serverConfig } = require('./config/serverConfig');
 
 const fastify = require('fastify')({ logger: true }) //call fastify constructor
-
-const PORT = 3000;
 
 fastify.register(app);
 
 // Run the server!
-fastify.listen({ port: PORT }, (err) => {
+fastify.listen({ port: serverConfig.PORT }, (err) => {
     if (err) {
         fastify.log.error(err)
         process.exit(1)
     }
-    console.log(`Server up at port ${PORT}`);
+    console.log(`Server up at port ${serverConfig.PORT }`);
 })
